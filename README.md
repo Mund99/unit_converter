@@ -2,8 +2,6 @@
 
 A versatile and user-friendly unit conversion tool built with Vue.js that allows users to convert between different units of measurement.
 
-![Unit Converter Screenshot](screenshot.png)
-
 ## Features
 
 - **Multiple Conversion Categories**: Convert between units of length, weight, temperature, and volume
@@ -11,7 +9,6 @@ A versatile and user-friendly unit conversion tool built with Vue.js that allows
 - **Dark Mode Support**: Toggle between light and dark themes based on preference
 - **Input Validation**: Real-time validation with helpful error messages
 - **Accessibility**: ARIA attributes and keyboard navigation for better accessibility
-- **Responsive Design**: Works on mobile, tablet, and desktop devices
 
 ## Conversion Categories
 
@@ -68,7 +65,7 @@ A versatile and user-friendly unit conversion tool built with Vue.js that allows
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/unit-converter.git
+   git clone https://github.com/Mund99/unit_converter
    ```
 
 2. Open the project folder:
