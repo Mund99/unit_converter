@@ -1,0 +1,352 @@
+:root {
+    /* Light mode colors */
+    --bg-gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --app-bg-light: white;
+    --text-color-light: #2c3e50;
+    --primary-color-light: #4361ee;
+    --primary-hover-light: #3a56d4;
+    --secondary-color-light: #e63946;
+    --secondary-hover-light: #d62b3a;
+    --input-bg-light: white;
+    --input-border-light: #ced4da;
+    --tab-bg-light: #f8f9fa;
+    --tab-hover-light: #e9ecef;
+    --result-bg-light: #f8f9fa;
+    --swap-btn-bg-light: #e9ecef;
+    --swap-btn-hover-light: #dee2e6;
+    --error-color-light: #e63946;
+    --box-shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    /* Dark mode colors */
+    --bg-gradient-dark: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    --app-bg-dark: #1f2937;
+    --text-color-dark: #e5e7eb;
+    --primary-color-dark: #60a5fa;
+    --primary-hover-dark: #3b82f6;
+    --secondary-color-dark: #f87171;
+    --secondary-hover-dark: #ef4444;
+    --input-bg-dark: #374151;
+    --input-border-dark: #4b5563;
+    --tab-bg-dark: #374151;
+    --tab-hover-dark: #4b5563;
+    --result-bg-dark: #374151;
+    --swap-btn-bg-dark: #4b5563;
+    --swap-btn-hover-dark: #6b7280;
+    --error-color-dark: #f87171;
+    --box-shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    /* Default to light mode */
+    --bg-gradient: var(--bg-gradient-light);
+    --app-bg: var(--app-bg-light);
+    --text-color: var(--text-color-light);
+    --primary-color: var(--primary-color-light);
+    --primary-hover: var(--primary-hover-light);
+    --secondary-color: var(--secondary-color-light);
+    --secondary-hover: var(--secondary-hover-light);
+    --input-bg: var(--input-bg-light);
+    --input-border: var(--input-border-light);
+    --tab-bg: var(--tab-bg-light);
+    --tab-hover: var(--tab-hover-light);
+    --result-bg: var(--result-bg-light);
+    --swap-btn-bg: var(--swap-btn-bg-light);
+    --swap-btn-hover: var(--swap-btn-hover-light);
+    --error-color: var(--error-color-light);
+    --box-shadow: var(--box-shadow-light);
+}
+
+.dark-mode {
+    --bg-gradient: var(--bg-gradient-dark);
+    --app-bg: var(--app-bg-dark);
+    --text-color: var(--text-color-dark);
+    --primary-color: var(--primary-color-dark);
+    --primary-hover: var(--primary-hover-dark);
+    --secondary-color: var(--secondary-color-dark);
+    --secondary-hover: var(--secondary-hover-dark);
+    --input-bg: var(--input-bg-dark);
+    --input-border: var(--input-border-dark);
+    --tab-bg: var(--tab-bg-dark);
+    --tab-hover: var(--tab-hover-dark);
+    --result-bg: var(--result-bg-dark);
+    --swap-btn-bg: var(--swap-btn-bg-dark);
+    --swap-btn-hover: var(--swap-btn-hover-dark);
+    --error-color: var(--error-color-dark);
+    --box-shadow: var(--box-shadow-dark);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-color);
+    transition: background 0.3s ease;
+}
+
+/* Main app container */
+#app {
+    background: var(--app-bg);
+    width: 100%;
+    max-width: 550px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 28px;
+    transition: color 0.3s ease;
+}
+
+h2 {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--tab-hover);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Conversion category tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--input-border);
+    transition: border 0.3s ease;
+}
+
+.tab-btn {
+    flex: 1;
+    background: var(--tab-bg);
+    border: none;
+    padding: 12px;
+    margin: 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.tab-btn:hover {
+    background: var(--tab-hover);
+}
+
+.tab-btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Form inputs */
+.converter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    position: relative;
+}
+
+label {
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 67, 97, 238), 0.15);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Unit selection row */
+.unit-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.unit-select {
+    flex: 1;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.convert-btn {
+    background-color: var(--primary-color);
+    color: white;
+    flex: 2;
+}
+
+.convert-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.reset-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    flex: 1;
+}
+
+.reset-btn:hover {
+    background-color: var(--secondary-hover);
+}
+
+.swap-btn {
+    background-color: var(--swap-btn-bg);
+    color: var(--text-color);
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.swap-btn:hover {
+    background-color: var(--swap-btn-hover);
+}
+
+/* Result display */
+.result {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: var(--result-bg);
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-color);
+    text-align: left;
+    font-size: 18px;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-left 0.3s ease;
+}
+
+.result-number {
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #app {
+        padding: 20px;
+    }
+
+    .unit-row {
+        flex-direction: column;
+    }
+
+    .swap-btn {
+        align-self: center;
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .convert-btn, .reset-btn {
+        width: 100%;
+    }
+}

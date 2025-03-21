@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A versatile unit converter for length, weight, and temperature with an easy-to-use interface">
+    <title>Unit Converter Project</title>
+
+    <!-- Import Vue.js from a CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Vue App Root -->
+    <div id="app">
+        <header>
+            <h1>Unit Converter</h1>
+            <button
+                class="theme-toggle"
+                @click="toggleTheme"
+                aria-label="Toggle dark mode"
+                :title="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+                <i :class="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+            </button>
+        </header>
+
+        <!-- Tabs for selecting conversion category -->
+        <div class="tabs" role="tablist" aria-label="Conversion categories">
+            <button
+                v-for="tab in tabs"
+                :key="tab.value"
+                @click="activeTab = tab.value"
+                class="tab-btn"
+                :class="{ active: activeTab === tab.value }"
+                role="tab"
+                :aria-selected="activeTab === tab.value"
+                :aria-controls="`${tab.value}-panel`">
+                {{ tab.name }}
+            </button>
+        </div>
+
+        <div class="converter-form" role="tabpanel" :aria-labelledby="`${activeTab}-tab`">
+            <!-- Input field for user to enter a value -->
+            <div class="input-group">
+                <label for="value-input">Enter Value</label>
+                <input
+                    type="number"
+                    id="value-input"
+                    v-model="value"
+                    placeholder="Enter a number"
+                    aria-describedby="value-error"
+                    @input="validateInput">
+                <small id="value-error" class="error-message" v-if="errors.value">{{ errors.value }}</small>
+            </div>
+
+            <div class="unit-row">
+                <!-- Dropdown to select 'From' unit -->
+                <div class="unit-select input-group">
+                    <label for="from-unit">From</label>
+                    <select id="from-unit" v-model="fromUnit" aria-describedby="from-unit-error">
+                        <option value="" disabled selected>Select unit</option>
+                        <option
+                            v-for="unit in availableUnits"
+                            :key="unit.value"
+                            :value="unit.value">
+                            {{ unit.name }}
+                        </option>
+                    </select>
+                    <small id="from-unit-error" class="error-message" v-if="errors.fromUnit">{{ errors.fromUnit }}</small>
+                </div>
+
+                <!-- Swap Button (Switches From and To units) -->
+                <button
+                    class="swap-btn"
+                    @click="swapUnits"
+                    title="Swap units"
+                    aria-label="Swap from and to units">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+
+                <!-- Dropdown to select 'To' unit -->
+                <div class="unit-select input-group">
+                    <label for="to-unit">To</label>
+                    <select id="to-unit" v-model="toUnit" aria-describedby="to-unit-error">
+                        <option value="" disabled selected>Select unit</option>
+                        <option
+                            v-for="unit in availableUnits"
+                            :key="unit.value"
+                            :value="unit.value">
+                            {{ unit.name }}
+                        </option>
+                    </select>
+                    <small id="to-unit-error" class="error-message" v-if="errors.toUnit">{{ errors.toUnit }}</small>
+                </div>
+            </div>
+
+            <!-- Convert and Reset Buttons -->
+            <div class="button-group">
+                <button
+                    class="convert-btn"
+                    @click="convert"
+                    :disabled="isLoading || hasErrors">
+                    <span v-if="isLoading"><i class="fas fa-spinner fa-spin"></i> Converting...</span>
+                    <span v-else>Convert</span>
+                </button>
+                <button class="reset-btn" @click="reset">Reset</button>
+            </div>
+
+            <!-- Result Display -->
+            <div v-if="result !== null" class="result" aria-live="polite">
+                <span class="result-number">{{ value }}</span> {{ getUnitName(fromUnit) }} =
+                <span class="result-number">{{ result }}</span> {{ getUnitName(toUnit) }}
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="app.js"></script>
+</body>
+</html>
